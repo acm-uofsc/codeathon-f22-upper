@@ -1,4 +1,6 @@
-votes = list(map(int, input().split()))
+input()
+input()
+votes = input().split()
 
 # Boyer Moore Majority Vote Algorithm
 majority = -1
@@ -11,5 +13,9 @@ for j in range(len(votes)):
         i = i + 1
     else:
         i = i - 1
- 
-print(majority)
+
+count = votes.count(majority)
+if count < (len(votes) // 2 + 1):
+    print('None')
+else:
+    print(majority)
