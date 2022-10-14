@@ -2,12 +2,10 @@
 import random
 from string import ascii_uppercase
 
-MIN_CAND = 2
-MAX_CAND = 100
+MIN_CAND = 10
+MAX_CAND = 1000
 
-MIN_VOTES = 10000
-MAX_VOTES - 1e7
-
+NUM_VOTES= list(map(int, [1e6,1e2,1e2,1e6,1e6,1e2,1e2,1e2,1e2,1e2]))
 
 def gen_candidate():
     letter = random.choice(ascii_uppercase)
@@ -28,22 +26,47 @@ def gen_candidates(n_candidates):
 case_num = int(input())
 # 0 and 1 are the sample cases
 if case_num == 0:
-    num_candidates = 3
+    num_candidates = 2
     total_votes = 10
     print(num_candidates, total_votes)
 
-    candidates = gen_candidates(num_candidates)
+    candidates = [i for i in range(num_candidates)]
+    print(*candidates)
+
+    votes = []
+    for i in range(num_candidates):
+        if i == 0:
+            votes += [candidates[i]] * (total_votes // 2 + 1)
+        else:
+            votes.append(candidates[i])
+    if len(votes) != total_votes:
+        votes += [candidates[-1]] * (total_votes - len(votes))
+
+    random.shuffle(votes)
+    print(*votes)
+elif case_num == 1:
+    num_candidates = 5
+    total_votes = 10
+    print(num_candidates, total_votes)
+
+    candidates = [i for i in range(num_candidates)]
+    print(*candidates)
+    votes = []
+    for i in range(len(candidates)):
+        votes.append(candidates[i])
+        votes.append(candidates[i])
+    random.shuffle(votes)
+    print(*votes)
+else:
+    num_candidates = random.randint(MIN_CAND, MAX_CAND)
+    total_votes = NUM_VOTES[case_num % len(NUM_VOTES)]
+    print(num_candidates, total_votes)
+
+    candidates = [i for i in range(num_candidates)]
     print(*candidates)
     vote_weights = [total_votes // num_candidates + 1] + [(total_votes - (total_votes // num_candidates + 1)) //
                                                           (num_candidates - 1)] * (num_candidates - 1)
     votes = random.choices(candidates, weights=vote_weights, k=total_votes)
     random.shuffle(votes)
     print(*votes)
-elif case_num == 1:
-    print(5, 4)
-else:
-    # output what should be read in as input by
-    # contestant code
-    n = random.randint(3, 100000)
-    j = random.randint(3, 2 ** 25)
-    print(n, j)
+
