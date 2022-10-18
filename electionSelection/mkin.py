@@ -3,9 +3,10 @@ import random
 from string import ascii_uppercase
 
 MIN_CAND = 10
-MAX_CAND = 1000
+MAX_CAND = 25
 
-NUM_VOTES= list(map(int, [1e6,1e2,1e2,1e6,1e6,1e2,1e2,1e2,1e2,1e2]))
+NUM_VOTES = list(map(int, [1e6, 1e3, 1e2, 1e6, 1e6, 1e2, 1e2, 1e2, 1e2, 1e2]))
+
 
 def gen_candidate():
     letter = random.choice(ascii_uppercase)
@@ -45,16 +46,18 @@ if case_num == 0:
     random.shuffle(votes)
     print(*votes)
 elif case_num == 1:
-    num_candidates = 5
-    total_votes = 10
+    num_candidates = random.randint(3, 15)
+    total_votes = 20
     print(num_candidates, total_votes)
 
     candidates = [i for i in range(num_candidates)]
     print(*candidates)
-    votes = []
-    for i in range(len(candidates)):
-        votes.append(candidates[i])
-        votes.append(candidates[i])
+
+    winner = random.choice(candidates)
+    winner_margin = random.randint(
+        total_votes // 2, total_votes // 2 + total_votes // 4)
+    votes = [winner] * winner_margin
+    votes += random.choices(candidates, k=(total_votes - winner_margin))
     random.shuffle(votes)
     print(*votes)
 else:
@@ -64,9 +67,11 @@ else:
 
     candidates = [i for i in range(num_candidates)]
     print(*candidates)
-    vote_weights = [total_votes // num_candidates + 1] + [(total_votes - (total_votes // num_candidates + 1)) //
-                                                          (num_candidates - 1)] * (num_candidates - 1)
-    votes = random.choices(candidates, weights=vote_weights, k=total_votes)
+
+    winner = random.choice(candidates)
+    winner_margin = random.randint(
+        total_votes // 2, total_votes // 2 + total_votes // 4)
+    votes = [winner] * winner_margin
+    votes += random.choices(candidates, k=(total_votes - winner_margin))
     random.shuffle(votes)
     print(*votes)
-

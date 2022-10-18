@@ -14,8 +14,4 @@ for j in range(len(votes)):
     else:
         i = i - 1
 
-count = votes.count(majority)
-if count < (len(votes) // 2 + 1):
-    print('None')
-else:
-    print(majority)
+print(majority)
