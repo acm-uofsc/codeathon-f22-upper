@@ -5,7 +5,10 @@ from string import ascii_uppercase
 MIN_CAND = 10
 MAX_CAND = 25
 
-NUM_VOTES = list(map(int, [1e6, 1e3, 1e2, 1e6, 1e6, 1e2, 1e2, 1e2, 1e2, 1e2]))
+MIN_LINES = 1
+MAX_LINES = 100
+
+NUM_VOTES = list(map(int, [1e2, 1e6, 1e2, 1e5, 1e5, 1e2, 1e2, 1e5, 1e2, 1e2]))
 
 
 def gen_candidate():
@@ -27,9 +30,10 @@ def gen_candidates(n_candidates):
 case_num = int(input())
 # 0 and 1 are the sample cases
 if case_num == 0:
+    num_elections = 1
     num_candidates = 2
     total_votes = 10
-    print(num_candidates, total_votes)
+    print(num_candidates, total_votes, num_elections)
 
     candidates = [i for i in range(num_candidates)]
     print(*candidates)
@@ -46,32 +50,36 @@ if case_num == 0:
     random.shuffle(votes)
     print(*votes)
 elif case_num == 1:
+    num_elections = 2
     num_candidates = random.randint(3, 15)
     total_votes = 20
-    print(num_candidates, total_votes)
+    print(num_candidates, total_votes, num_elections)
 
     candidates = [i for i in range(num_candidates)]
     print(*candidates)
 
-    winner = random.choice(candidates)
-    winner_margin = random.randint(
-        total_votes // 2, total_votes // 2 + total_votes // 4)
-    votes = [winner] * winner_margin
-    votes += random.choices(candidates, k=(total_votes - winner_margin))
-    random.shuffle(votes)
-    print(*votes)
+    for i in range(num_elections):
+        winner = random.choice(candidates)
+        winner_margin = random.randint(
+            total_votes // 2 + 1, total_votes // 2 + total_votes // 4)
+        votes = [winner] * winner_margin
+        votes += random.choices(candidates, k=(total_votes - winner_margin))
+        random.shuffle(votes)
+        print(*votes)
 else:
+    num_elections = random.randint(MIN_LINES, MAX_LINES)
     num_candidates = random.randint(MIN_CAND, MAX_CAND)
     total_votes = NUM_VOTES[case_num % len(NUM_VOTES)]
-    print(num_candidates, total_votes)
+    print(num_candidates, total_votes, num_elections)
 
     candidates = [i for i in range(num_candidates)]
     print(*candidates)
 
-    winner = random.choice(candidates)
-    winner_margin = random.randint(
-        total_votes // 2, total_votes // 2 + total_votes // 4)
-    votes = [winner] * winner_margin
-    votes += random.choices(candidates, k=(total_votes - winner_margin))
-    random.shuffle(votes)
-    print(*votes)
+    for i in range(num_elections):
+        winner = random.choice(candidates)
+        winner_margin = random.randint(
+            total_votes // 2 + 1, total_votes // 2 + total_votes // 4)
+        votes = [winner] * winner_margin
+        votes += random.choices(candidates, k=(total_votes - winner_margin))
+        random.shuffle(votes)
+        print(*votes)
