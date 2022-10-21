@@ -1,0 +1,18 @@
+4 4 20
+4
+5
+6
+7
+
+6
+12
+23
+44
+
+
+Since this is the 4th row, the first 4 seats are given numbers 0,1,2,3. The rest of the seats are calculated as such:
+
+	S(4) = S(3) + S(2) + S(1) + S(0) = 3 + 2 + 1 + 0 = 6
+	S(5) = S(4) + S(3) + S(2) + S(1) = 6 + 3 + 2 + 1 = 12
+    S(6) = S(5) + S(4) + S(3) + S(2) = 12 + 6 + 3 + 2 = 23
+    S(7) + S(6) + S(5) + S(4) + S(3) = 23 + 12 + 6 + 3 = 44
