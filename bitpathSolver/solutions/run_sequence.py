@@ -43,3 +43,7 @@ for t in range(cases):
             print("const: ", bbin(const))
         print("after", s, temp)
     print()
+
+a = [4, 5, 7, 8]
+for i in range(a):
+    print(len(a) * i)

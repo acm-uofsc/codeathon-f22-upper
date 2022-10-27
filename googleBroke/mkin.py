@@ -36,27 +36,45 @@ else:
         m = random.randint(4, 50) * 10
         prefix_len = random.randint(3, 20)
     else:
-        n = random.randint(180, 200) * 5
-        prefix_len = random.randint(4500, 5000)
-        m = 2000
+        n = random.randint(100, 120) * 5
+        prefix_len = random.randint(3000, 3200)
+        m = 1000
     print(n, m)
     # prefix_len = random.randint(3, 20 if case_num < easy_cases_cutoff else 5000)
     prefix = "".join(random.choices(string.ascii_letters, k=prefix_len-min(10, prefix_len-2)))
-    suffix_len = 5
-    after = random.sample(string.ascii_letters, k=suffix_len)
+    # if case_num < easy_cases_cutoff:
+    #     suffix_len = 
+    # else:
+    suffix_len = n
+    # after = random.sample(string.ascii_letters, k=suffix_len)
+    suffix = "".join(random.choices(string.ascii_letters, k=suffix_len))
     auto_completes = []
-    for i in range(n//5):
-        for j in range(suffix_len):
-            auto_completes.append(prefix+(after[j]*(i+1)))
+    # assert n % suffix_len == 0
+    for i in range(n):
+        auto_completes.append(prefix + suffix[:i])
+    last = auto_completes[-1]
     random.shuffle(auto_completes)
     assert len(set(auto_completes)) == n
     for q in auto_completes:
         print(q)
     print(FILLER_LINE)
     searches = []
+    end2 = "".join(random.choices(string.ascii_letters, k=m))
     for x in range(m):
-        searches.append(random.choice(auto_completes) +
-                        random.choice(string.ascii_letters))
+        if case_num > easy_cases_cutoff:
+            chosen = last
+        else:
+            chosen = random.choice(auto_completes)
+        # extra = "".join(random.choices(string.ascii_letters, k=(x // 100) + 3))
+        off = random.randint(1, 100)
+        if off > 95:
+            temp = list(chosen)
+            temp[random.randint(0, len(temp) - 1)] = random.choice(string.ascii_letters)
+            temp = "".join(temp)
+            searches.append(temp + end2[:x] + random.choice(string.ascii_letters))
+        else:
+            searches.append(chosen + end2[:x] + random.choice(string.ascii_letters))
+    random.shuffle(searches)
     for x in searches:
         print(x)
 
