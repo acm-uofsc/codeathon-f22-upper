@@ -8,7 +8,7 @@ MAX_CAND = 25
 MIN_LINES = 1
 MAX_LINES = 100
 
-NUM_VOTES = list(map(int, [1e2, 1e6, 1e2, 1e5, 1e5, 1e2, 1e2, 1e5, 1e2, 1e2]))
+NUM_VOTES = list(map(int, [1e2, 200000, 1e2, 1e4, 1e5, 1e2, 1e2, 1e5, 1e2, 1e2]))
 
 
 def gen_candidate():
