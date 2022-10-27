@@ -1,0 +1,23 @@
+The shortest possible move sequence in the first test case is ">>":
+
+	start:  1000
+    after > 0100
+    after > 0010
+
+
+this was 2 moves, so 2 is output.
+
+In case 2, recall that bits are able to be chopped by shifting right, then we can shift left once we only have 2 bits left. (Remember bits only get dropped when shifting right, not left). So the only sequence of moves that works is ">>>>>>><<"
+
+	start:  111110000
+    after > 011111000
+    after > 001111100
+    after > 000111110
+    after > 000011111
+    after > 000001111
+    after > 000000111
+    after > 000000011
+    after < 000000110
+    after < 000001100
+
+This was 9 moves, so 9 is output

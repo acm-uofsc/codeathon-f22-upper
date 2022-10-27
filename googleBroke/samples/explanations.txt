@@ -1,0 +1,29 @@
+While typing the word "carbuncle", the words "car" and "carb" are fully typed. That is two words, so 2 is printed
+
+
+When typing "tree", the suggestions "t" and "tree" were completely typed, so 2 is printed. When just "t" is typed, "t" is the only auto complete suggestion that was completely typed, so 1 is printed. When typing "iAmForteetree", after the letter "i" all of the autocomplete suggestions would disappear. Note: even though "t" and "tree" appear in the search "iAmForteetree", they would not show in the autocomplete list. They would need to be at the beginning of your search string to count. Therefore, 0 is printed.
+
+
+When typing "carbuncle":
+
+    3 words start with 'c'
+    3 words start with 'ca'
+    3 words start with 'car'
+    2 words start with 'carb'
+
+3 + 3 + 3 + 2 == 11, so 11 is printed
+
+
+
+When typing the word "tree"
+
+	4 words start with 't'
+    2 words start with 'tr'
+    2 words start with 'tre'
+    2 words start with 'tree'
+
+4 + 2 + 2 + 2 = 10, so 10 is printed
+
+When typing 't', 4 words start with t, so 4 is printed.
+
+No words start with any prefix of iAmForteeTree, so 0 is printed

@@ -1,5 +1,5 @@
 There are two people on the history list, both with an iq of 100. There are three visitors. The first has an iq of 99, so they are not smarter than the two people from history, so a 0 is printed. They are not as smart or smarter than anyone from history, so a 0 is printed.
 
-The second customer is not smarter than anyone, but they are equal to both the people from history, so 0 2 is printed.
+The second customer is not smarter than anyone, but they are equal to both the people from history, so `0 2` is printed.
 
-The third customer is smarter than both the people from history, and they are smarter than or equal to those same two, so 02 2 is printed.
+The third customer is smarter than both the people from history, and they are smarter than or equal to those same two, so `02 2` is printed.
